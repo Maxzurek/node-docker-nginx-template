@@ -1,0 +1,52 @@
+{
+    "name": "node-docker-nginx-template",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/app.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/app.js",
+        "dev": "nodemon --exec ts-node src/app.ts"
+    },
+    "author": "Maxime Cesare-Zurek",
+    "license": "MIT",
+    "dependencies": {
+        "bcrypt": "^5.1.0",
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "express": "^4.17.1",
+        "googleapis": "^118.0.0",
+        "handlebar": "^1.0.0",
+        "helmet": "^7.0.0",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^6.0.12",
+        "nodemailer": "^6.6.3",
+        "ts-node": "^10.0.0",
+        "typescript": "^4.3.5",
+        "@types/express": "^4.17.13"
+    },
+    "devDependencies": {
+        "@types/bcrypt": "^5.0.0",
+        "@types/body-parser": "^1.19.0",
+        "@types/cors": "^2.8.12",
+        "@types/jest": "^27.0.2",
+        "@types/jsonwebtoken": "^8.5.2",
+        "@types/mongoose": "^5.11.97",
+        "@types/nodemailer": "^6.4.3",
+        "@typescript-eslint/eslint-plugin": "^4.29.3",
+        "@typescript-eslint/parser": "^4.29.3",
+        "eslint": "^7.32.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "jest": "^27.0.6",
+        "nodemon": "^2.0.12",
+        "prettier": "^2.3.2",
+        "supertest": "^6.1.6",
+        "ts-jest": "^27.0.3"
+    },
+    "jest": {
+        "preset": "ts-jest",
+        "testEnvironment": "node"
+    }
+}
