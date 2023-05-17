@@ -5,11 +5,12 @@ import { AuthenticatedRequest } from "../interfaces/express.interfaces";
 
 const requireAuth = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
     const token = req.headers.authorization.split(" ")[1];
-    if (!token) return res.status(401).send("Access denied");
+    if (!token) return res.status(401).send("Unauthorized");
 
     try {
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET) as jwt.JwtPayload;
-        const user = await User.findById(decodedToken.userId);
+        const { _id: userId } = decodedToken;
+        const user = await User.findById(userId);
 
         if (!user) {
             return res.status(401).send("Unauthorized");
