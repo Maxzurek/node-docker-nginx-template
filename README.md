@@ -15,7 +15,7 @@ Before running the application, make sure you have the following software instal
 ### 1. Clone the repository:
 
 ```
-git clone node-docker-nginx-template
+git clone https://github.com/Maxzurek/node-docker-nginx-template.git
 ```
 
 ### 2. Install dependencies:
