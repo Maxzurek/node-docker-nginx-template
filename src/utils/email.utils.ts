@@ -36,7 +36,7 @@ export const sendVerificationEmail = async (userEmail: string, verificationCode:
     const filePath = "./src/email-templates/validate-email-template.html"; // TODO Change or replace the HTML file if needed.
     const source = readFileSync(filePath, "utf-8").toString();
     const template = compile(source);
-    const confirmationUrl = `http://${process.env.SERVER_HOST_NAME}:${process.env.PORT}/auth/verify-email/${verificationCode}`;
+    const confirmationUrl = `http://${process.env.IP_ADRESS}:${process.env.PORT}/auth/verify-email/${verificationCode}`;
     const replacements = {
         // TODO To inject variable into the HTML file, use the {{VARIABLE_NAME}} format anywhere inside the file.
         confirmationUrl: confirmationUrl,
