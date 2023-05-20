@@ -11,6 +11,7 @@
     "author": "Maxime Cesare-Zurek",
     "license": "MIT",
     "dependencies": {
+        "@types/express": "^4.17.13",
         "bcrypt": "^5.1.0",
         "body-parser": "^1.19.0",
         "cors": "^2.8.5",
@@ -24,7 +25,7 @@
         "nodemailer": "^6.6.3",
         "ts-node": "^10.0.0",
         "typescript": "^4.3.5",
-        "@types/express": "^4.17.13"
+        "winston": "^3.8.2"
     },
     "devDependencies": {
         "@types/bcrypt": "^5.0.0",

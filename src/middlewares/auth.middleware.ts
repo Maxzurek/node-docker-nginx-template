@@ -2,10 +2,19 @@ import { Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import User, { UserRole } from "../models/user";
 import { AuthenticatedRequest } from "../interfaces/express.interfaces";
+import AppError from "../app-error/AppError";
+import { ErrorCode } from "../app-error/appError.interfaces";
 
 export const requireAuth = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-    const token = req.headers.authorization.split(" ")[1];
-    if (!token) return res.status(401).send("Unauthorized");
+    const headerAuth = req.headers.authorization;
+    if (!headerAuth) {
+        return new AppError(401, ErrorCode.Unauthorized, "Unauthorized").send(res);
+    }
+
+    const token = headerAuth.split(" ")[1];
+    if (!token) {
+        return new AppError(401, ErrorCode.Unauthorized, "Unauthorized").send(res);
+    }
 
     try {
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET) as jwt.JwtPayload;
@@ -13,13 +22,13 @@ export const requireAuth = async (req: AuthenticatedRequest, res: Response, next
         const user = await User.findById(userId);
 
         if (!user) {
-            return res.status(401).send("Unauthorized");
+            return new AppError(401, ErrorCode.Unauthorized, "Unauthorized").send(res);
         }
 
         req.user = user;
         next();
     } catch (err) {
-        res.status(401).send("Unauthorized");
+        new AppError(401, ErrorCode.Unauthorized, "Unauthorized").send(res);
     }
 };
 
@@ -31,7 +40,7 @@ export const requireAdmin = async (
     const { user } = req;
 
     if (user.role !== UserRole.Admin) {
-        res.status(403).send("Forbidden");
+        return new AppError(403, ErrorCode.Forbidden, "Forbidden").send(res);
     }
 
     next();
