@@ -38,6 +38,7 @@ const errorCodes = {
  *
  * @apiBody {String} email
  * @apiBody {String} password
+ * @apiBody {Number} role
  *
  * @apiSuccess {String} userId.
  *
@@ -52,6 +53,7 @@ const register = async (req: Request, res: Response) => {
         email: req.body.email,
         password: req.body.password,
         verificationCode,
+        role: req.body.role
     });
 
     try {

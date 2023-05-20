@@ -1,12 +1,18 @@
 import mongoose, { Document, Schema } from "mongoose";
 import bcrypt from "bcrypt";
 
+export enum UserRole {
+    User,
+    Admin,
+}
+
 export interface UserDTO extends Document {
     name: string;
     email: string;
     password: string;
     isVerified: boolean;
     verificationCode: string;
+    role: UserRole;
 }
 
 const userSchema: Schema = new Schema<UserDTO>(
@@ -26,6 +32,11 @@ const userSchema: Schema = new Schema<UserDTO>(
         },
         verificationCode: {
             type: String,
+        },
+        role: {
+            type: Number,
+            enum: UserRole,
+            default: UserRole.User,
         },
     },
     { timestamps: true }

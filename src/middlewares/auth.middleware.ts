@@ -1,9 +1,9 @@
 import { Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import User from "../models/user";
+import User, { UserRole } from "../models/user";
 import { AuthenticatedRequest } from "../interfaces/express.interfaces";
 
-const requireAuth = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+export const requireAuth = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
     const token = req.headers.authorization.split(" ")[1];
     if (!token) return res.status(401).send("Unauthorized");
 
@@ -23,4 +23,16 @@ const requireAuth = async (req: AuthenticatedRequest, res: Response, next: NextF
     }
 };
 
-export default requireAuth;
+export const requireAdmin = async (
+    req: AuthenticatedRequest,
+    res: Response,
+    next: NextFunction
+) => {
+    const { user } = req;
+
+    if (user.role !== UserRole.Admin) {
+        res.status(403).send("Forbidden");
+    }
+
+    next();
+};
