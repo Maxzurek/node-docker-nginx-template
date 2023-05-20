@@ -62,4 +62,4 @@ Refer to the [docker-instructions.md](docker-instructions.md) file to run or con
 
 ## License
 
-This project is licensed under the ([CC-BY-NC-ND License.](https://creativecommons.org/licenses/by-nc-nd/4.0/))
+This project is licensed under the ([MIT License.](https://en.wikipedia.org/wiki/MIT_License))
