@@ -4,6 +4,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile.nodejs
+        container_name: nodejs
         ports:
             - "6379:6379"
         env_file:
@@ -12,7 +13,10 @@ services:
             - NODE_ENV=production
 
     nginx:
-        image: nginx
+        build:
+            context: .
+            dockerfile: Dockerfile.nginx
+        container_name: webserver
         ports:
             - "8080:8080"
         volumes:
