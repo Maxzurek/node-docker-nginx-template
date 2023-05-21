@@ -17,7 +17,7 @@ Make sure you have the following software installed on your system:
 3. Build and run the Docker images by running the following command:
 
 ```bash
-docker-compose up --build
+docker-compose up
 ```
 
 ### Setting up ports
